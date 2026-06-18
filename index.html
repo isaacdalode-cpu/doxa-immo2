@@ -3,120 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doxa Immo • RDC</title>
+  <title>Doxa Immo RDC • Plateforme immobilière</title>
   <!-- Font Awesome 6 (gratuit) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* ============================================
+       DOXA IMMO RDC — STYLES COMPLETS
+       ============================================ */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
-    body {
-      background: #f4f7fc;
-      color: #1e2a3a;
-      line-height: 1.5;
-    }
-
-    /* Couleurs principales */
     :root {
-      --bleu-fonce: #0b2a4a;
+      --bleu-fonce: #0a2a44;
+      --bleu-clair: #1a4a6e;
       --blanc: #ffffff;
       --vert: #1f8b4c;
-      --gris-clair: #eef2f7;
-      --ombre: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --vert-hover: #16733e;
+      --gris-fond: #f5f8fc;
+      --gris-bordure: #dce3ec;
+      --ombre: 0 8px 30px rgba(0, 0, 0, 0.07);
       --radius: 16px;
+      --radius-sm: 10px;
+      --transition: 0.25s ease;
     }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--gris-fond);
+      color: #1e2a3a;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
 
     .container {
-      max-width: 1280px;
+      max-width: 1240px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 24px;
     }
 
-    /* --- HEADER / NAV --- */
-    .navbar {
-      background: var(--bleu-fonce);
-      padding: 16px 0;
-      color: white;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .nav-flex {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .logo i {
-      color: var(--vert);
-    }
-    .logo span {
-      color: var(--vert);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .nav-links a {
-      color: #f0f4fa;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 6px 10px;
-      border-radius: 40px;
-      transition: 0.2s;
-    }
-    .nav-links a:hover {
-      background: rgba(255,255,255,0.12);
-      color: white;
-    }
-    .nav-links .btn-outline-light {
-      border: 1px solid rgba(255,255,255,0.5);
-      padding: 6px 18px;
-      border-radius: 40px;
-    }
-    .btn-outline-light:hover {
-      background: white;
-      color: var(--bleu-fonce);
-    }
-
-    /* BOUTONS */
+    /* ========== BOUTONS ========== */
     .btn {
-      display: inline-block;
-      padding: 10px 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 28px;
       border-radius: 40px;
       font-weight: 600;
+      font-size: 0.95rem;
       border: none;
       cursor: pointer;
-      transition: 0.2s;
+      transition: var(--transition);
       text-decoration: none;
-      font-size: 0.95rem;
     }
     .btn-primary {
       background: var(--vert);
-      color: white;
+      color: var(--blanc);
     }
     .btn-primary:hover {
-      background: #16733e;
-      transform: scale(1.02);
+      background: var(--vert-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(31, 139, 76, 0.35);
     }
     .btn-outline {
       background: transparent;
@@ -125,119 +76,184 @@
     }
     .btn-outline:hover {
       background: var(--bleu-fonce);
+      color: var(--blanc);
+    }
+    .btn-outline-light {
+      border: 1.5px solid rgba(255,255,255,0.5);
       color: white;
+      background: transparent;
+    }
+    .btn-outline-light:hover {
+      background: white;
+      color: var(--bleu-fonce);
     }
     .btn-danger {
       background: #c0392b;
       color: white;
     }
-    .btn-danger:hover {
-      background: #a93226;
-    }
-    .btn-warning {
-      background: #f39c12;
-      color: white;
-    }
+    .btn-danger:hover { background: #a93226; }
 
-    /* CARTES */
+    /* ========== BADGES ========== */
+    .badge {
+      display: inline-block;
+      padding: 3px 14px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+    .badge-vert { background: var(--vert); color: white; }
+    .badge-bleu { background: var(--bleu-fonce); color: white; }
+    .badge-or { background: #f39c12; color: white; }
+    .badge-gris { background: #e9edf4; color: #2c3e50; }
+
+    /* ========== CARTES ========== */
     .card {
-      background: white;
+      background: var(--blanc);
       border-radius: var(--radius);
       box-shadow: var(--ombre);
       padding: 20px;
-      transition: 0.25s;
+      transition: var(--transition);
     }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.09); }
 
-    /* GRILLE */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+    /* ============================================
+       1. HEADER
+       ============================================ */
+    .header {
+      background: var(--bleu-fonce);
+      padding: 14px 0;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.15);
     }
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
     }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .logo i { color: var(--vert); }
+    .logo span { color: var(--vert); }
 
-    /* FORMULAIRES */
-    .form-group {
-      margin-bottom: 18px;
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
     }
-    .form-group label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 4px;
+    .nav-menu a {
+      color: #e8edf5;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 40px;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+    .nav-menu a:hover {
+      background: rgba(255,255,255,0.12);
+      color: white;
+    }
+    .nav-menu .btn-outline-light { padding: 6px 20px; }
+
+    /* ============================================
+       2. HERO
+       ============================================ */
+    .hero {
+      background: linear-gradient(145deg, var(--bleu-fonce) 0%, #1a4a6e 100%);
+      color: white;
+      padding: 64px 0 56px;
+      border-radius: 0 0 48px 48px;
+      margin-bottom: 36px;
+    }
+    .hero-content { max-width: 680px; }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero h1 i { color: var(--vert); }
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 28px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ============================================
+       3. BARRE DE RECHERCHE
+       ============================================ */
+    .search-section { margin-bottom: 40px; }
+    .search-card {
+      background: white;
+      padding: 24px 28px;
+      border-radius: var(--radius);
+      box-shadow: var(--ombre);
+    }
+    .search-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      align-items: end;
+    }
+    .search-grid .form-group { margin-bottom: 0; }
+    .search-grid label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #4a5a72;
+      letter-spacing: 0.5px;
     }
     .form-control {
       width: 100%;
-      padding: 12px 16px;
+      padding: 11px 16px;
       border-radius: 40px;
-      border: 1px solid #d0d9e4;
+      border: 1.5px solid var(--gris-bordure);
       background: white;
       font-size: 0.95rem;
-      transition: 0.2s;
+      transition: var(--transition);
     }
     .form-control:focus {
       outline: none;
       border-color: var(--bleu-fonce);
-      box-shadow: 0 0 0 3px rgba(11,42,74,0.15);
+      box-shadow: 0 0 0 4px rgba(10,42,68,0.12);
     }
-    select.form-control {
-      appearance: auto;
-    }
+    select.form-control { appearance: auto; }
 
-    /* BADGE */
-    .badge {
-      display: inline-block;
-      padding: 4px 14px;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: var(--gris-clair);
-      color: #1e2a3a;
+    /* ============================================
+       4. LISTE DES ANNONCES
+       ============================================ */
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 32px 0 18px;
     }
-    .badge-vert {
-      background: var(--vert);
-      color: white;
-    }
-    .badge-bleu {
-      background: var(--bleu-fonce);
-      color: white;
-    }
-    .badge-or {
-      background: #f1c40f;
-      color: #1e2a3a;
-    }
+    .section-title h2 { font-size: 1.7rem; font-weight: 700; }
 
-    /* PAGE ACCUEIL (simulée) */
-    .hero {
-      background: linear-gradient(135deg, var(--bleu-fonce) 0%, #1a3a5e 100%);
-      color: white;
-      padding: 60px 0 50px;
-      border-radius: 0 0 40px 40px;
-      margin-bottom: 40px;
+    .grid-annonces {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 26px;
     }
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      max-width: 600px;
-    }
-
-    /* SECTION ANNONCES */
     .property-card img {
       width: 100%;
-      height: 180px;
+      height: 190px;
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
       background: #d0d9e4;
     }
     .property-card .price {
@@ -245,282 +261,311 @@
       font-weight: 700;
       color: var(--vert);
     }
+    .property-card .location {
+      color: #4a5a72;
+      font-size: 0.9rem;
+    }
+    .property-card .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .property-card .card-actions .btn { flex: 1; justify-content: center; padding: 10px 12px; font-size: 0.85rem; }
 
-    /* RESPONSIVE */
-    @media (max-width: 700px) {
-      .nav-flex {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .nav-links {
-        justify-content: center;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .grid-2, .grid-3 {
-        grid-template-columns: 1fr;
-      }
+    /* ============================================
+       5. FORMULAIRE PUBLIER
+       ============================================ */
+    .form-publish {
+      background: white;
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--ombre);
+      margin: 30px 0;
+    }
+    .form-publish .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-publish .form-group { margin-bottom: 6px; }
+    .form-publish label { font-weight: 600; display: block; margin-bottom: 3px; }
+
+    /* ============================================
+       6. LEADS / FORMULAIRE INTÉRÊT
+       ============================================ */
+    .lead-box {
+      background: #eaf6ee;
+      border-left: 6px solid var(--vert);
+      padding: 24px 28px;
+      border-radius: var(--radius);
+      margin: 36px 0;
+    }
+    .lead-box .lead-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
 
-    /* ---- SIMULATION DE DASHBOARD (tabs) ---- */
+    /* ============================================
+       7. DASHBOARD (TABS)
+       ============================================ */
     .tab-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
+      border-bottom: 2px solid var(--gris-bordure);
+      padding-bottom: 14px;
       margin: 30px 0 20px;
-      border-bottom: 2px solid #e0e7ef;
-      padding-bottom: 12px;
     }
     .tab-btn {
-      padding: 8px 20px;
+      padding: 10px 24px;
       border-radius: 40px;
-      background: transparent;
       border: none;
       font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
+      background: transparent;
       color: #2c3e50;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.95rem;
     }
     .tab-btn.active {
       background: var(--bleu-fonce);
       color: white;
     }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
+    .tab-btn:hover:not(.active) { background: #e9edf4; }
+    .tab-content { display: none; margin-top: 20px; }
+    .tab-content.active { display: block; }
 
-    /* lead / notif */
-    .lead-item {
-      border-left: 4px solid var(--vert);
-      padding: 12px 16px;
-      background: #f8fafc;
-      border-radius: 12px;
-      margin-bottom: 10px;
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
     }
-
-    footer {
-      background: var(--bleu-fonce);
-      color: #b0c7dd;
-      padding: 30px 0;
-      margin-top: 50px;
+    .dash-card {
+      background: white;
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--ombre);
       text-align: center;
+      transition: var(--transition);
+    }
+    .dash-card:hover { transform: translateY(-3px); }
+    .dash-card i { font-size: 2.2rem; color: var(--bleu-fonce); margin-bottom: 8px; }
+    .dash-card .count { font-size: 1.8rem; font-weight: 700; color: var(--vert); }
+
+    .lead-item {
+      background: #f8fafc;
+      border-left: 4px solid var(--vert);
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* ============================================
+       8. FOOTER
+       ============================================ */
+    .footer {
+      background: var(--bleu-fonce);
+      color: #b8cbdf;
+      padding: 40px 0 28px;
+      margin-top: 50px;
+      border-radius: 40px 40px 0 0;
+      text-align: center;
+    }
+    .footer .logo { justify-content: center; color: white; }
+    .footer p { opacity: 0.8; font-size: 0.95rem; }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 768px) {
+      .header-flex { flex-direction: column; align-items: stretch; }
+      .nav-menu { justify-content: center; }
+      .hero h1 { font-size: 2.2rem; }
+      .search-grid { grid-template-columns: 1fr 1fr; }
+      .form-publish .form-grid { grid-template-columns: 1fr; }
+      .lead-box .lead-grid { grid-template-columns: 1fr; }
+      .grid-annonces { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .search-grid { grid-template-columns: 1fr; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .tab-bar { flex-direction: column; }
+      .tab-btn { width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- ========== NAV ========== -->
-<nav class="navbar">
-  <div class="container nav-flex">
+<!-- ==========================================
+     HEADER
+     ========================================== -->
+<header class="header">
+  <div class="container header-flex">
     <div class="logo">
       <i class="fas fa-building"></i> Doxa<span>Immo</span>
     </div>
-    <div class="nav-links">
+    <nav class="nav-menu">
       <a href="#"><i class="fas fa-home"></i> Accueil</a>
       <a href="#"><i class="fas fa-search"></i> Recherche</a>
+      <a href="#"><i class="fas fa-plus-circle"></i> Publier</a>
       <a href="#" class="btn-outline-light"><i class="fas fa-user-plus"></i> Inscription</a>
       <a href="#" class="btn-outline-light"><i class="fas fa-sign-in-alt"></i> Connexion</a>
-    </div>
+    </nav>
   </div>
-</nav>
+</header>
 
-<!-- ========== HERO ========== -->
+<!-- ==========================================
+     HERO
+     ========================================== -->
 <section class="hero">
-  <div class="container">
-    <h1>🏠 Doxa Immo <span style="color: #7ed9a0;">RDC</span></h1>
-    <p>Trouvez ou publiez votre bien immobilier en toute confiance. Propriétaires, agents, acheteurs – une plateforme pour tous.</p>
-    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
-      <a href="#" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Publier une annonce</a>
-      <a href="#" class="btn" style="background: white; color: var(--bleu-fonce);"><i class="fas fa-search"></i> Explorer</a>
+  <div class="container hero-content">
+    <h1><i class="fas fa-home"></i> Trouvez votre logement en RDC</h1>
+    <p>Découvrez des milliers de biens immobiliers à Kinshasa, Lubumbashi, Goma et partout en RDC. Publiez gratuitement vos annonces.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary"><i class="fas fa-search"></i> Explorer les biens</a>
+      <a href="#" class="btn btn-outline-light"><i class="fas fa-plus-circle"></i> Publier une annonce</a>
     </div>
   </div>
 </section>
 
-<!-- ========== RECHERCHE + FILTRES ========== -->
-<div class="container" style="margin-bottom: 30px;">
-  <div class="card" style="padding: 20px 24px;">
-    <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: end;">
-      <div style="flex:1; min-width:140px;">
-        <label>Ville</label>
-        <select class="form-control"><option>Kinshasa</option><option>Lubumbashi</option><option>Goma</option></select>
+<!-- ==========================================
+     BARRE DE RECHERCHE + FILTRES
+     ========================================== -->
+<section class="container search-section">
+  <div class="search-card">
+    <div class="search-grid">
+      <div class="form-group">
+        <label><i class="fas fa-city"></i> Ville</label>
+        <select class="form-control">
+          <option>Kinshasa</option><option>Lubumbashi</option><option>Goma</option>
+          <option>Bukavu</option><option>Kisangani</option><option>Mbuji-Mayi</option>
+        </select>
       </div>
-      <div style="flex:1; min-width:140px;">
-        <label>Commune</label>
-        <select class="form-control"><option>Toutes</option><option>Gombe</option><option>Lingwala</option></select>
+      <div class="form-group">
+        <label><i class="fas fa-map-pin"></i> Commune</label>
+        <select class="form-control">
+          <option>Toutes</option><option>Gombe</option><option>Lingwala</option>
+          <option>Kasa-Vubu</option><option>Bandalungwa</option>
+        </select>
       </div>
-      <div style="flex:1; min-width:140px;">
-        <label>Quartier</label>
-        <input class="form-control" placeholder="Ex: Binza">
+      <div class="form-group">
+        <label><i class="fas fa-location-dot"></i> Quartier</label>
+        <input class="form-control" placeholder="Ex: Binza, Golf...">
       </div>
-      <div style="flex:1; min-width:120px;">
-        <label>Prix max</label>
-        <input class="form-control" placeholder="$">
+      <div class="form-group">
+        <label><i class="fas fa-tag"></i> Type</label>
+        <select class="form-control">
+          <option>Tous</option><option>Maison</option><option>Appartement</option>
+          <option>Terrain</option><option>Local commercial</option>
+        </select>
       </div>
-      <div style="flex:1; min-width:130px;">
-        <label>Type</label>
-        <select class="form-control"><option>Tous</option><option>Maison</option><option>Appartement</option><option>Terrain</option><option>Local commercial</option></select>
+      <div class="form-group">
+        <label><i class="fas fa-dollar-sign"></i> Prix max</label>
+        <input class="form-control" placeholder="$ 500 000">
       </div>
       <div>
-        <button class="btn btn-primary"><i class="fas fa-sliders-h"></i> Filtrer</button>
+        <button class="btn btn-primary" style="width:100%; justify-content:center;"><i class="fas fa-sliders-h"></i> Filtrer</button>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ========== ANNONCES (simulation) ========== -->
-<div class="container">
-  <h2 style="display: flex; justify-content: space-between; align-items: center;">
-    <span><i class="fas fa-building" style="color: var(--bleu-fonce);"></i> Annonces récentes</span>
-    <span class="badge badge-bleu">+12 nouvelles</span>
-  </h2>
-  <div class="grid-3" style="margin-top: 20px;">
-    <!-- carte 1 -->
+<!-- ==========================================
+     LISTE DES ANNONCES
+     ========================================== -->
+<section class="container">
+  <div class="section-title">
+    <h2><i class="fas fa-building" style="color:var(--bleu-fonce);"></i> Annonces récentes</h2>
+    <span class="badge badge-vert"><i class="fas fa-bolt"></i> 8 nouvelles</span>
+  </div>
+
+  <div class="grid-annonces">
+    <!-- Carte 1 -->
     <div class="card property-card">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%232c3e50'/%3E%3Ctext x='40' y='120' font-family='Arial' font-size='24' fill='%23ecf0f1'%3E🏡 Maison%3C/text%3E%3C/svg%3E" alt="maison">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%232c3e50'/%3E%3Ctext x='40' y='120' font-family='Arial' font-size='26' fill='%23ecf0f1'%3E🏡 Villa Gombe%3C/text%3E%3C/svg%3E" alt="Villa Gombe">
       <div style="margin-top:12px;">
         <span class="badge badge-vert"><i class="fas fa-check-circle"></i> Vérifié</span>
-        <span class="badge" style="background:#e67e22; color:white;">Agent</span>
-        <h3>Villa moderne à Gombe</h3>
-        <p><i class="fas fa-map-pin"></i> Kinshasa, Gombe</p>
+        <span class="badge badge-bleu"><i class="fas fa-user-tie"></i> Agent</span>
+        <h3>Villa moderne avec piscine</h3>
+        <div class="location"><i class="fas fa-map-pin"></i> Kinshasa, Gombe, Quartier Binza</div>
         <div class="price">$350 000</div>
-        <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
-          <button class="btn btn-primary" style="flex:1;"><i class="fas fa-heart"></i> Je suis intéressé</button>
-          <button class="btn btn-outline" style="flex:1;">Détails</button>
+        <div class="card-actions">
+          <button class="btn btn-primary btn-interesse"><i class="fas fa-heart"></i> Je suis intéressé</button>
+          <button class="btn btn-outline">Détails</button>
         </div>
       </div>
     </div>
-    <!-- carte 2 -->
+
+    <!-- Carte 2 -->
     <div class="card property-card">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a3a5e'/%3E%3Ctext x='40' y='120' font-family='Arial' font-size='24' fill='%23ecf0f1'%3E🏢 Appartement%3C/text%3E%3C/svg%3E" alt="appart">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a3a5e'/%3E%3Ctext x='40' y='120' font-family='Arial' font-size='26' fill='%23ecf0f1'%3E🏢 Appartement%3C/text%3E%3C/svg%3E" alt="Appartement">
       <div style="margin-top:12px;">
-        <span class="badge badge-bleu"><i class="fas fa-check-circle"></i> Propriétaire</span>
-        <h3>Appartement 3 chambres</h3>
-        <p><i class="fas fa-map-pin"></i> Lubumbashi, Golf</p>
+        <span class="badge badge-bleu"><i class="fas fa-user"></i> Propriétaire</span>
+        <h3>Appartement 3 chambres vue mer</h3>
+        <div class="location"><i class="fas fa-map-pin"></i> Lubumbashi, Golf, Quartier Bel-Air</div>
         <div class="price">$120 000</div>
-        <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
-          <button class="btn btn-primary" style="flex:1;"><i class="fas fa-heart"></i> Je suis intéressé</button>
-          <button class="btn btn-outline" style="flex:1;">Détails</button>
+        <div class="card-actions">
+          <button class="btn btn-primary btn-interesse"><i class="fas fa-heart"></i> Je suis intéressé</button>
+          <button class="btn btn-outline">Détails</button>
         </div>
       </div>
     </div>
-    <!-- carte 3 -->
+
+    <!-- Carte 3 -->
     <div class="card property-card">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%233e5c3a'/%3E%3Ctext x='40' y='120' font-family='Arial' font-size='24' fill='%23ecf0f1'%3E🌳 Terrain%3C/text%3E%3C/svg%3E" alt="terrain">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%233e5c3a'/%3E%3Ctext x='40' y='120' font-family='Arial' font-size='26' fill='%23ecf0f1'%3E🌳 Terrain%3C/text%3E%3C/svg%3E" alt="Terrain">
       <div style="margin-top:12px;">
         <span class="badge badge-vert"><i class="fas fa-check-circle"></i> Agent vérifié</span>
-        <h3>Terrain 2000 m²</h3>
-        <p><i class="fas fa-map-pin"></i> Goma, Lac Vert</p>
+        <span class="badge badge-or"><i class="fas fa-star"></i> Top</span>
+        <h3>Terrain 2500 m² constructible</h3>
+        <div class="location"><i class="fas fa-map-pin"></i> Goma, Lac Vert, Quartier Les Volcans</div>
         <div class="price">$45 000</div>
-        <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
-          <button class="btn btn-primary" style="flex:1;"><i class="fas fa-heart"></i> Je suis intéressé</button>
-          <button class="btn btn-outline" style="flex:1;">Détails</button>
+        <div class="card-actions">
+          <button class="btn btn-primary btn-interesse"><i class="fas fa-heart"></i> Je suis intéressé</button>
+          <button class="btn btn-outline">Détails</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte 4 -->
+    <div class="card property-card">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%235d4e37'/%3E%3Ctext x='40' y='120' font-family='Arial' font-size='26' fill='%23ecf0f1'%3E🏪 Local commercial%3C/text%3E%3C/svg%3E" alt="Local">
+      <div style="margin-top:12px;">
+        <span class="badge badge-bleu"><i class="fas fa-user"></i> Propriétaire</span>
+        <h3>Local commercial 120 m²</h3>
+        <div class="location"><i class="fas fa-map-pin"></i> Kinshasa, Kasa-Vubu, Marché Central</div>
+        <div class="price">$210 000</div>
+        <div class="card-actions">
+          <button class="btn btn-primary btn-interesse"><i class="fas fa-heart"></i> Je suis intéressé</button>
+          <button class="btn btn-outline">Détails</button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ========== LEAD FORMULAIRE (simulation "je suis intéressé") ========== -->
-<div class="container" style="margin: 40px 0;">
-  <div class="card" style="background: #eaf4eb; border-left: 8px solid var(--vert);">
-    <h3><i class="fas fa-envelope"></i> Vous êtes intéressé par un bien ?</h3>
-    <p>Laissez vos coordonnées, le propriétaire ou l'agent vous recontactera.</p>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-      <input class="form-control" placeholder="Votre nom">
-      <input class="form-control" placeholder="Téléphone">
-      <input class="form-control" placeholder="WhatsApp">
-      <input class="form-control" placeholder="Message (optionnel)">
-    </div>
-    <button class="btn btn-primary" style="margin-top:12px;"><i class="fas fa-paper-plane"></i> Envoyer mon intérêt</button>
-  </div>
-</div>
-
-<!-- ========== DASHBOARD SIMULÉ (onglets) ========== -->
-<div class="container" style="margin: 30px 0;">
-  <h2><i class="fas fa-tachometer-alt"></i> Tableau de bord (simulation)</h2>
-  <div class="tab-bar">
-    <button class="tab-btn active" data-tab="tab1">Propriétaire</button>
-    <button class="tab-btn" data-tab="tab2">Agent</button>
-    <button class="tab-btn" data-tab="tab3">Admin</button>
-  </div>
-
-  <!-- Propriétaire -->
-  <div id="tab1" class="tab-content active">
-    <div class="grid-2">
-      <div class="card"><i class="fas fa-home"></i> <strong>Mes propriétés</strong> (3)</div>
-      <div class="card"><i class="fas fa-plus-circle" style="color:var(--vert);"></i> <strong>Ajouter une propriété</strong></div>
-      <div class="card"><i class="fas fa-edit"></i> Modifier / Supprimer</div>
-      <div class="card"><i class="fas fa-users"></i> <strong>Leads reçus</strong> (2 nouveaux)</div>
-    </div>
-    <div class="lead-item"><i class="fas fa-user"></i> Jean M. - intéressé par villa Gombe <span class="badge badge-vert">WhatsApp</span></div>
-    <div class="lead-item"><i class="fas fa-user"></i> Claire T. - intéressée par appartement Lubumbashi</div>
-  </div>
-
-  <!-- Agent -->
-  <div id="tab2" class="tab-content">
-    <div class="grid-2">
-      <div class="card"><i class="fas fa-building"></i> Mes propriétés (8)</div>
-      <div class="card"><i class="fas fa-plus-circle" style="color:var(--vert);"></i> Ajouter une propriété</div>
-      <div class="card"><i class="fas fa-tasks"></i> Gestion des leads (5)</div>
-      <div class="card"><i class="fas fa-history"></i> Historique leads</div>
-      <div class="card"><i class="fas fa-coins"></i> <strong>Solde crédits</strong> 120 crédits</div>
-    </div>
-  </div>
-
-  <!-- Admin -->
-  <div id="tab3" class="tab-content">
-    <div class="grid-2">
-      <div class="card"><i class="fas fa-users-cog"></i> Gestion utilisateurs</div>
-      <div class="card"><i class="fas fa-home"></i> Gestion propriétés (validation)</div>
-      <div class="card"><i class="fas fa-check-circle" style="color:var(--vert);"></i> Valider les annonces (6 en attente)</div>
-      <div class="card"><i class="fas fa-chart-bar"></i> Statistiques générales</div>
-    </div>
-    <p style="margin-top:12px;"><span class="badge badge-or">⚠️ 3 annonces en attente de validation</span></p>
-  </div>
-</div>
-
-<!-- ========== FOOTER ========== -->
-<footer>
-  <div class="container">
-    <p><i class="fas fa-building" style="color: var(--vert);"></i> Doxa Immo RDC • Plateforme immobilière moderne</p>
-    <p style="font-size:0.9rem; opacity:0.7;">© 2026 • Tous droits réservés • République Démocratique du Congo</p>
-  </div>
-</footer>
-
-<!-- ========== JAVASCRIPT ========== -->
-<script>
-  // Onglets dashboard
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      const target = this.dataset.tab;
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(target).classList.add('active');
-    });
-  });
-
-  // Bouton "Je suis intéressé" -> alerte lead (simulation)
-  document.querySelectorAll('.property-card .btn-primary').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const card = this.closest('.property-card');
-      const title = card.querySelector('h3')?.innerText || 'ce bien';
-      alert(`✅ Votre intérêt pour "${title}" a été enregistré.\nUn propriétaire/agent vous contactera sous 24h.`);
-    });
-  });
-
-  // Bouton "Envoyer mon intérêt" (formulaire lead)
-  document.querySelector('.card .btn-primary')?.addEventListener('click', function() {
-    alert('📩 Votre message a été envoyé au propriétaire/agent.');
-  });
-
-  // Badge admin validation (simulation)
-  console.log('Doxa Immo RDC • Plateforme prête');
-</script>
-</body>
-          </html>
+<!-- ==========================================
+     FORMULAIRE "PUBLIER UNE ANNONCE"
+     ========================================== -->
+<section class="container">
+  <div class="form-publish">
+    <h3><i class="fas fa-plus-circle" style="color:var(--vert);"></i> Publier une annonce</h3>
+    <p style="color:#4a5a72; margin-bottom:16px;">Remplissez tous les champs pour mettre votre bien en ligne.</p>
+    <div class="form-grid">
+      <div class="form-group"><label>Titre *</label><input class="form-control" placeholder="Ex: Villa moderne à Gombe"></div>
+      <div class="form-group"><label>Prix ($) *</label><input class="form-control" placeholder="350 000"></div>
+      <div class="form-group"><label>Type de bien *</label>
+        <select class="form-control"><option>Maison</option><option>Appartement</option><option>Terrain</option><option>Local commercial</option></select>
+      </div>
+      <div class="form-group"><label>Ville *</label>
+        <select class="form-control"><option>Kinshasa</option><option>Lubumbashi</option><option>Goma</option></select>
+      </div>
+      <div class="form-group"><label>Commune</label><input class="form-control" placeholder="Gombe, Lingwala..."></div>
+      <div class="form-group"><label>Quartier</label><input class="form-control" placeholder="Binza, Golf..."></div>
+      <div class="form-group" style="grid-column: 1 / -1;"><label>Adresse complète</label><input class="form-control" placeho
