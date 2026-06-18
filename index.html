@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>Doxa Immo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doxa Immo | Kinshasa</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Bienvenue sur Doxa Immo</h1>
-  <p>Mon premier site immobilier</p>
+    <nav>
+        <div class="logo">DOXA IMMO</div>
+        <div class="nav-links">
+            <a href="#">Accueil</a>
+            <button class="btn-login">Connexion</button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>Trouvez votre bien à Kinshasa</h1>
+            <div class="search-box">
+                <input type="text" placeholder="Ville, Commune, Quartier...">
+                <button class="btn-green">Rechercher</button>
+            </div>
+        </section>
+
+        <section class="properties" id="app">
+            <!-- Les annonces s'afficheront ici -->
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
