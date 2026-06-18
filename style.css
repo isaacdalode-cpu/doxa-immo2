@@ -1,9 +1,18 @@
-:root { --blue: #1e3a8a; --green: #16a34a; --white: #ffffff; }
-body { margin: 0; font-family: sans-serif; background: #f4f4f4; }
-nav { background: var(--blue); color: var(--white); padding: 1rem 20px; display: flex; justify-content: space-between; align-items: center; }
-.hero { background: var(--blue); color: white; padding: 50px 20px; text-align: center; }
-.search-box { background: white; padding: 5px; border-radius: 8px; display: flex; max-width: 500px; margin: 20px auto; }
-.search-box input { flex: 1; border: none; padding: 10px; }
-.btn-green { background: var(--green); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
-.properties { padding: 20px; display: grid; gap: 20px; }
-.card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.hero {
+    background: #1e3a8a;
+    color: white;
+    padding: 40px 20px; /* Plus d'espace intérieur */
+    text-align: center;
+    margin-top: 60px; /* Décale le bloc sous le menu */
+}
+
+/* Force la barre de recherche à être propre sur mobile */
+.search-box {
+    background: white;
+    padding: 5px;
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+}
