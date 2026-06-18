@@ -1,35 +1,526 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doxa Immo | Kinshasa</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doxa Immo • RDC</title>
+  <!-- Font Awesome 6 (gratuit) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background: #f4f7fc;
+      color: #1e2a3a;
+      line-height: 1.5;
+    }
+
+    /* Couleurs principales */
+    :root {
+      --bleu-fonce: #0b2a4a;
+      --blanc: #ffffff;
+      --vert: #1f8b4c;
+      --gris-clair: #eef2f7;
+      --ombre: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --radius: 16px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* --- HEADER / NAV --- */
+    .navbar {
+      background: var(--bleu-fonce);
+      padding: 16px 0;
+      color: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .nav-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .logo i {
+      color: var(--vert);
+    }
+    .logo span {
+      color: var(--vert);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #f0f4fa;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 40px;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.12);
+      color: white;
+    }
+    .nav-links .btn-outline-light {
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 6px 18px;
+      border-radius: 40px;
+    }
+    .btn-outline-light:hover {
+      background: white;
+      color: var(--bleu-fonce);
+    }
+
+    /* BOUTONS */
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .btn-primary {
+      background: var(--vert);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #16733e;
+      transform: scale(1.02);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--bleu-fonce);
+      color: var(--bleu-fonce);
+    }
+    .btn-outline:hover {
+      background: var(--bleu-fonce);
+      color: white;
+    }
+    .btn-danger {
+      background: #c0392b;
+      color: white;
+    }
+    .btn-danger:hover {
+      background: #a93226;
+    }
+    .btn-warning {
+      background: #f39c12;
+      color: white;
+    }
+
+    /* CARTES */
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--ombre);
+      padding: 20px;
+      transition: 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    /* GRILLE */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    /* FORMULAIRES */
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 40px;
+      border: 1px solid #d0d9e4;
+      background: white;
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--bleu-fonce);
+      box-shadow: 0 0 0 3px rgba(11,42,74,0.15);
+    }
+    select.form-control {
+      appearance: auto;
+    }
+
+    /* BADGE */
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--gris-clair);
+      color: #1e2a3a;
+    }
+    .badge-vert {
+      background: var(--vert);
+      color: white;
+    }
+    .badge-bleu {
+      background: var(--bleu-fonce);
+      color: white;
+    }
+    .badge-or {
+      background: #f1c40f;
+      color: #1e2a3a;
+    }
+
+    /* PAGE ACCUEIL (simulée) */
+    .hero {
+      background: linear-gradient(135deg, var(--bleu-fonce) 0%, #1a3a5e 100%);
+      color: white;
+      padding: 60px 0 50px;
+      border-radius: 0 0 40px 40px;
+      margin-bottom: 40px;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+    }
+
+    /* SECTION ANNONCES */
+    .property-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #d0d9e4;
+    }
+    .property-card .price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--vert);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .nav-flex {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-links {
+        justify-content: center;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ---- SIMULATION DE DASHBOARD (tabs) ---- */
+    .tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 30px 0 20px;
+      border-bottom: 2px solid #e0e7ef;
+      padding-bottom: 12px;
+    }
+    .tab-btn {
+      padding: 8px 20px;
+      border-radius: 40px;
+      background: transparent;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #2c3e50;
+    }
+    .tab-btn.active {
+      background: var(--bleu-fonce);
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    /* lead / notif */
+    .lead-item {
+      border-left: 4px solid var(--vert);
+      padding: 12px 16px;
+      background: #f8fafc;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: var(--bleu-fonce);
+      color: #b0c7dd;
+      padding: 30px 0;
+      margin-top: 50px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">DOXA IMMO</div>
-        <div class="nav-links">
-            <a href="#">Accueil</a>
-            <button class="btn-login">Connexion</button>
+
+<!-- ========== NAV ========== -->
+<nav class="navbar">
+  <div class="container nav-flex">
+    <div class="logo">
+      <i class="fas fa-building"></i> Doxa<span>Immo</span>
+    </div>
+    <div class="nav-links">
+      <a href="#"><i class="fas fa-home"></i> Accueil</a>
+      <a href="#"><i class="fas fa-search"></i> Recherche</a>
+      <a href="#" class="btn-outline-light"><i class="fas fa-user-plus"></i> Inscription</a>
+      <a href="#" class="btn-outline-light"><i class="fas fa-sign-in-alt"></i> Connexion</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="container">
+    <h1>🏠 Doxa Immo <span style="color: #7ed9a0;">RDC</span></h1>
+    <p>Trouvez ou publiez votre bien immobilier en toute confiance. Propriétaires, agents, acheteurs – une plateforme pour tous.</p>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+      <a href="#" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Publier une annonce</a>
+      <a href="#" class="btn" style="background: white; color: var(--bleu-fonce);"><i class="fas fa-search"></i> Explorer</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RECHERCHE + FILTRES ========== -->
+<div class="container" style="margin-bottom: 30px;">
+  <div class="card" style="padding: 20px 24px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: end;">
+      <div style="flex:1; min-width:140px;">
+        <label>Ville</label>
+        <select class="form-control"><option>Kinshasa</option><option>Lubumbashi</option><option>Goma</option></select>
+      </div>
+      <div style="flex:1; min-width:140px;">
+        <label>Commune</label>
+        <select class="form-control"><option>Toutes</option><option>Gombe</option><option>Lingwala</option></select>
+      </div>
+      <div style="flex:1; min-width:140px;">
+        <label>Quartier</label>
+        <input class="form-control" placeholder="Ex: Binza">
+      </div>
+      <div style="flex:1; min-width:120px;">
+        <label>Prix max</label>
+        <input class="form-control" placeholder="$">
+      </div>
+      <div style="flex:1; min-width:130px;">
+        <label>Type</label>
+        <select class="form-control"><option>Tous</option><option>Maison</option><option>Appartement</option><option>Terrain</option><option>Local commercial</option></select>
+      </div>
+      <div>
+        <button class="btn btn-primary"><i class="fas fa-sliders-h"></i> Filtrer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ANNONCES (simulation) ========== -->
+<div class="container">
+  <h2 style="display: flex; justify-content: space-between; align-items: center;">
+    <span><i class="fas fa-building" style="color: var(--bleu-fonce);"></i> Annonces récentes</span>
+    <span class="badge badge-bleu">+12 nouvelles</span>
+  </h2>
+  <div class="grid-3" style="margin-top: 20px;">
+    <!-- carte 1 -->
+    <div class="card property-card">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%232c3e50'/%3E%3Ctext x='40' y='120' font-family='Arial' font-size='24' fill='%23ecf0f1'%3E🏡 Maison%3C/text%3E%3C/svg%3E" alt="maison">
+      <div style="margin-top:12px;">
+        <span class="badge badge-vert"><i class="fas fa-check-circle"></i> Vérifié</span>
+        <span class="badge" style="background:#e67e22; color:white;">Agent</span>
+        <h3>Villa moderne à Gombe</h3>
+        <p><i class="fas fa-map-pin"></i> Kinshasa, Gombe</p>
+        <div class="price">$350 000</div>
+        <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
+          <button class="btn btn-primary" style="flex:1;"><i class="fas fa-heart"></i> Je suis intéressé</button>
+          <button class="btn btn-outline" style="flex:1;">Détails</button>
         </div>
-    </nav>
+      </div>
+    </div>
+    <!-- carte 2 -->
+    <div class="card property-card">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a3a5e'/%3E%3Ctext x='40' y='120' font-family='Arial' font-size='24' fill='%23ecf0f1'%3E🏢 Appartement%3C/text%3E%3C/svg%3E" alt="appart">
+      <div style="margin-top:12px;">
+        <span class="badge badge-bleu"><i class="fas fa-check-circle"></i> Propriétaire</span>
+        <h3>Appartement 3 chambres</h3>
+        <p><i class="fas fa-map-pin"></i> Lubumbashi, Golf</p>
+        <div class="price">$120 000</div>
+        <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
+          <button class="btn btn-primary" style="flex:1;"><i class="fas fa-heart"></i> Je suis intéressé</button>
+          <button class="btn btn-outline" style="flex:1;">Détails</button>
+        </div>
+      </div>
+    </div>
+    <!-- carte 3 -->
+    <div class="card property-card">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%233e5c3a'/%3E%3Ctext x='40' y='120' font-family='Arial' font-size='24' fill='%23ecf0f1'%3E🌳 Terrain%3C/text%3E%3C/svg%3E" alt="terrain">
+      <div style="margin-top:12px;">
+        <span class="badge badge-vert"><i class="fas fa-check-circle"></i> Agent vérifié</span>
+        <h3>Terrain 2000 m²</h3>
+        <p><i class="fas fa-map-pin"></i> Goma, Lac Vert</p>
+        <div class="price">$45 000</div>
+        <div style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;">
+          <button class="btn btn-primary" style="flex:1;"><i class="fas fa-heart"></i> Je suis intéressé</button>
+          <button class="btn btn-outline" style="flex:1;">Détails</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <main>
-        <section class="hero">
-            <h1>Trouvez votre bien à Kinshasa</h1>
-            <div class="search-box">
-                <input type="text" placeholder="Ville, Commune, Quartier...">
-                <button class="btn-green">Rechercher</button>
-            </div>
-        </section>
+<!-- ========== LEAD FORMULAIRE (simulation "je suis intéressé") ========== -->
+<div class="container" style="margin: 40px 0;">
+  <div class="card" style="background: #eaf4eb; border-left: 8px solid var(--vert);">
+    <h3><i class="fas fa-envelope"></i> Vous êtes intéressé par un bien ?</h3>
+    <p>Laissez vos coordonnées, le propriétaire ou l'agent vous recontactera.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <input class="form-control" placeholder="Votre nom">
+      <input class="form-control" placeholder="Téléphone">
+      <input class="form-control" placeholder="WhatsApp">
+      <input class="form-control" placeholder="Message (optionnel)">
+    </div>
+    <button class="btn btn-primary" style="margin-top:12px;"><i class="fas fa-paper-plane"></i> Envoyer mon intérêt</button>
+  </div>
+</div>
 
-        <section class="properties" id="app">
-            <!-- Les annonces s'afficheront ici -->
-        </section>
-    </main>
+<!-- ========== DASHBOARD SIMULÉ (onglets) ========== -->
+<div class="container" style="margin: 30px 0;">
+  <h2><i class="fas fa-tachometer-alt"></i> Tableau de bord (simulation)</h2>
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="tab1">Propriétaire</button>
+    <button class="tab-btn" data-tab="tab2">Agent</button>
+    <button class="tab-btn" data-tab="tab3">Admin</button>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- Propriétaire -->
+  <div id="tab1" class="tab-content active">
+    <div class="grid-2">
+      <div class="card"><i class="fas fa-home"></i> <strong>Mes propriétés</strong> (3)</div>
+      <div class="card"><i class="fas fa-plus-circle" style="color:var(--vert);"></i> <strong>Ajouter une propriété</strong></div>
+      <div class="card"><i class="fas fa-edit"></i> Modifier / Supprimer</div>
+      <div class="card"><i class="fas fa-users"></i> <strong>Leads reçus</strong> (2 nouveaux)</div>
+    </div>
+    <div class="lead-item"><i class="fas fa-user"></i> Jean M. - intéressé par villa Gombe <span class="badge badge-vert">WhatsApp</span></div>
+    <div class="lead-item"><i class="fas fa-user"></i> Claire T. - intéressée par appartement Lubumbashi</div>
+  </div>
+
+  <!-- Agent -->
+  <div id="tab2" class="tab-content">
+    <div class="grid-2">
+      <div class="card"><i class="fas fa-building"></i> Mes propriétés (8)</div>
+      <div class="card"><i class="fas fa-plus-circle" style="color:var(--vert);"></i> Ajouter une propriété</div>
+      <div class="card"><i class="fas fa-tasks"></i> Gestion des leads (5)</div>
+      <div class="card"><i class="fas fa-history"></i> Historique leads</div>
+      <div class="card"><i class="fas fa-coins"></i> <strong>Solde crédits</strong> 120 crédits</div>
+    </div>
+  </div>
+
+  <!-- Admin -->
+  <div id="tab3" class="tab-content">
+    <div class="grid-2">
+      <div class="card"><i class="fas fa-users-cog"></i> Gestion utilisateurs</div>
+      <div class="card"><i class="fas fa-home"></i> Gestion propriétés (validation)</div>
+      <div class="card"><i class="fas fa-check-circle" style="color:var(--vert);"></i> Valider les annonces (6 en attente)</div>
+      <div class="card"><i class="fas fa-chart-bar"></i> Statistiques générales</div>
+    </div>
+    <p style="margin-top:12px;"><span class="badge badge-or">⚠️ 3 annonces en attente de validation</span></p>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <p><i class="fas fa-building" style="color: var(--vert);"></i> Doxa Immo RDC • Plateforme immobilière moderne</p>
+    <p style="font-size:0.9rem; opacity:0.7;">© 2026 • Tous droits réservés • République Démocratique du Congo</p>
+  </div>
+</footer>
+
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+  // Onglets dashboard
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const target = this.dataset.tab;
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(target).classList.add('active');
+    });
+  });
+
+  // Bouton "Je suis intéressé" -> alerte lead (simulation)
+  document.querySelectorAll('.property-card .btn-primary').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const card = this.closest('.property-card');
+      const title = card.querySelector('h3')?.innerText || 'ce bien';
+      alert(`✅ Votre intérêt pour "${title}" a été enregistré.\nUn propriétaire/agent vous contactera sous 24h.`);
+    });
+  });
+
+  // Bouton "Envoyer mon intérêt" (formulaire lead)
+  document.querySelector('.card .btn-primary')?.addEventListener('click', function() {
+    alert('📩 Votre message a été envoyé au propriétaire/agent.');
+  });
+
+  // Badge admin validation (simulation)
+  console.log('Doxa Immo RDC • Plateforme prête');
+</script>
 </body>
-</html>
-
+          </html>
